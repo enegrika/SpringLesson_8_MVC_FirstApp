@@ -5,7 +5,7 @@
          http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          id="WebApp_ID" version="3.1">
 
-  <display-name>spring-mvc-app1</display-name>
+  <display-name>SpringMVC_FirstApp-</display-name>
 
   <absolute-ordering/>
 
