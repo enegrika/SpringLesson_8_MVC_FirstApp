@@ -65,7 +65,7 @@ public class FirstController {
                 res = 0;
         }
 
-        model.addAttribute("result", "The result of " + action + " is : " + res);
+        model.addAttribute("result", "Результат " + action + " is : " + res);
         return "first/calculator";
     }
 

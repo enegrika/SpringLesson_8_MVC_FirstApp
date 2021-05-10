@@ -31,6 +31,7 @@ public class SpringConfig implements WebMvcConfigurer {
     public SpringResourceTemplateResolver templateResolver() {
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
         templateResolver.setApplicationContext(applicationContext);
+        templateResolver.setCharacterEncoding("UTF-8"); // КОДИРОВКА ДЛЯ строк внутри HTML файлов
         templateResolver.setPrefix("WEB-INF/views/");
         templateResolver.setSuffix(".html");
         return templateResolver;
@@ -47,6 +48,7 @@ public class SpringConfig implements WebMvcConfigurer {
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
         ThymeleafViewResolver resolver = new ThymeleafViewResolver();
+        resolver.setCharacterEncoding("UTF-8"); // КОДИРОВКА ДЛЯ строк внутри JAVA кода
         resolver.setTemplateEngine(templateEngine());
         registry.viewResolver(resolver);
     }
