@@ -1,6 +1,7 @@
 package org.sergei.spring.lesson.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,10 +25,15 @@ public class FirstController {
     @GetMapping("/hel")
 
     public String hello(@RequestParam(value = "name", required = false) String name,
-                        @RequestParam(value = "surname",required = false) String surname){ // @requestParam ONLY GET certain value from GET request string key
+                        @RequestParam(value = "surname",required = false) String surname,
+                        Model model){ // @requestParam ONLY GET certain value from GET request string key
         // ALSO IF we don't have these parameters HttpServletRequest object return BAD REQUEST HTTP Status 400 to browser
         // but we can FIX it with "required = false" parameter
-        System.out.println("Hello here : " + name + " " + surname);
+
+//        System.out.println("Hello here : " + name + " " + surname);
+        model.addAttribute("message","Hello here : " + name + " " + surname);
+
+
         return "first/hello";
     }
 
