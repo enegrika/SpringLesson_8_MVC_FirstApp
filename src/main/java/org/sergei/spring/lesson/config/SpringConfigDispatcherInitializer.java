@@ -7,6 +7,7 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 //  вместо нас он реализует интерфейс WebApplicationInitializer (начиная со СПРИНГ 3.0)
 // для этого класса подкачиваем еще одну зависимость из мавен репозитория - java servlet api!
 
+// in this abstract class we need to implement only 3 methods
 
 public class SpringConfigDispatcherInitializer
         extends AbstractAnnotationConfigDispatcherServletInitializer {
