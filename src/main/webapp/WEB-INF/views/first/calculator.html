@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Calculator</title>
 </head>
 <body>
+<h1>Calculator</h1>
 <p>The answer is : </p>
+<!--<a href="/first/calculator?a=2&b=12&action=multiply"> Request with numbers hardcoded in HTML</a>-->
+<p th:text="${result}"/>
 </body>
 </html>

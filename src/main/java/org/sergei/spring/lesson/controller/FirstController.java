@@ -25,13 +25,13 @@ public class FirstController {
     @GetMapping("/hel")
 
     public String hello(@RequestParam(value = "name", required = false) String name,
-                        @RequestParam(value = "surname",required = false) String surname,
-                        Model model){ // @requestParam ONLY GET certain value from GET request string key
+                        @RequestParam(value = "surname", required = false) String surname,
+                        Model model) { // @requestParam ONLY GET certain value from GET request string key
         // ALSO IF we don't have these parameters HttpServletRequest object return BAD REQUEST HTTP Status 400 to browser
         // but we can FIX it with "required = false" parameter
 
 //        System.out.println("Hello here : " + name + " " + surname);
-        model.addAttribute("message","Hello here : " + name + " " + surname);
+        model.addAttribute("message", "Hello here : " + name + " " + surname);
 
 
         return "first/hello";
@@ -40,6 +40,29 @@ public class FirstController {
     @GetMapping("/bye")
     public String byePage() {
         return "first/goodbye";
+    }
+
+    @GetMapping("/calculator")
+    public String calculate(@RequestParam(value = "a", required = false) int a,
+                            @RequestParam(value = "b", required = false) int b,
+                            @RequestParam(value = "action", required = false) String action,
+                            Model model) {
+        int res;
+        switch (action) {
+            case "multiplication":
+                res = a * b;
+            case "addition":
+                res = a + b;
+            case "subtraction":
+                res = a - b;
+            case "division":
+                res = a / b;
+            default:
+                res = 0;
+        }
+
+        model.addAttribute("result", "The result is : " + res);
+        return "first/calculator";
     }
 
 }
