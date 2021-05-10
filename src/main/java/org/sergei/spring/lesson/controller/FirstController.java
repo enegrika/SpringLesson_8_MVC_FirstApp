@@ -49,19 +49,23 @@ public class FirstController {
                             Model model) {
         int res;
         switch (action) {
-            case "multiplication":
+            case "multiply":
                 res = a * b;
+                break;
             case "addition":
                 res = a + b;
+                break;
             case "subtraction":
                 res = a - b;
+                break;
             case "division":
                 res = a / b;
+                break;
             default:
                 res = 0;
         }
 
-        model.addAttribute("result", "The result is : " + res);
+        model.addAttribute("result", "The result of " + action + " is : " + res);
         return "first/calculator";
     }
 
