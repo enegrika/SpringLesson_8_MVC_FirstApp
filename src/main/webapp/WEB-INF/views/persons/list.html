@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
@@ -6,7 +6,7 @@
 </head>
 <body>
 <div th:each="person : ${persons}">
-    <a th:href="${person/{id}(id=${person.getId()})}"
+    <a th:href="@{persons/{id}(id=${person.getId()})}"
        th:text="${person.getName()}">
         user</a>
 </div>

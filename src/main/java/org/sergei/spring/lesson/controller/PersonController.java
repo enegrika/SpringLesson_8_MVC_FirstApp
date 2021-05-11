@@ -20,15 +20,16 @@ public class PersonController {
     }
 
     @GetMapping
-    public String index(Model model){
+    public String showAllpersonsList(Model model){
         // get all persons from DAO and send it to Views
 
         model.addAttribute("persons",personDAO.personList());
         return "persons/list";
     }
 
-    @GetMapping("/{id}")
-    public String show(@PathVariable("id") int id, Model model){
+    @GetMapping("/{id}") //in GET request в запросе от браузера если будем передавать id,
+    // то с помощью аннотации PathVariable мы можем передать это число в наш метод шоуперсон по айди здесь же внедряем сущность модель для
+    public String showPersonById(@PathVariable("id") int id, Model model){
         // get ONE person by ID from DAO and send it to Views
 
         model.addAttribute("person",personDAO.show(id));

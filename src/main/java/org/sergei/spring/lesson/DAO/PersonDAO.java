@@ -8,25 +8,26 @@ import java.util.List;
 
 @Component
 public class PersonDAO {
-    private List<Person> persons;
     private static int PERSON_COUNT;
+    private List<Person> personList;
 
-    {
-        persons = new ArrayList<>();
-        persons.add(new Person(++PERSON_COUNT, "Andrei"));
-        persons.add(new Person(++PERSON_COUNT, "Sergei"));
-        persons.add(new Person(++PERSON_COUNT, "Ivan"));
-        persons.add(new Person(++PERSON_COUNT, "Vladimir"));
-        persons.add(new Person(++PERSON_COUNT, "Denis"));
+
+      {
+        personList = new ArrayList<>();
+        personList.add(new Person(++PERSON_COUNT, "Andrei"));
+        personList.add(new Person(++PERSON_COUNT, "Sergei"));
+        personList.add(new Person(++PERSON_COUNT, "Ivan"));
+        personList.add(new Person(++PERSON_COUNT, "Vladimir"));
+        personList.add(new Person(++PERSON_COUNT, "Denis"));
     }
 
     public List<Person> personList(){
-        return persons;
+        return personList;
     }
 
 
     public Person show(int id){
-        return persons.stream()
+        return personList.stream()
                 .filter(person -> person.getId() == id)
                 .findAny()
                 .orElse(null);
