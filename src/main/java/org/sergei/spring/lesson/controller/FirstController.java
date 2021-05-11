@@ -47,7 +47,7 @@ public class FirstController {
                             @RequestParam(value = "b", required = false) int b,
                             @RequestParam(value = "action", required = false) String action,
                             Model model) {
-        int res;
+        double res;
         switch (action) {
             case "multiply":
                 res = a * b;
@@ -59,7 +59,7 @@ public class FirstController {
                 res = a - b;
                 break;
             case "division":
-                res = a / b;
+                res = a / (double) b;
                 break;
             default:
                 res = 0;
