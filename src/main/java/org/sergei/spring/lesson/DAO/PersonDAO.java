@@ -26,7 +26,7 @@ public class PersonDAO {
     }
 
 
-    public Person show(int id){
+    public Person getPersonById(int id){
         return personList.stream()
                 .filter(person -> person.getId() == id)
                 .findAny()

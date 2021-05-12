@@ -32,7 +32,7 @@ public class PersonController {
     public String showPersonById(@PathVariable("id") int id, Model model){
         // get ONE person by ID from DAO and send it to Views
 
-        model.addAttribute("person",personDAO.show(id));
+        model.addAttribute("person",personDAO.getPersonById(id));
         return "persons/show";
     }
 
