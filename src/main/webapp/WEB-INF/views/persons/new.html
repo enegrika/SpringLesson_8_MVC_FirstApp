@@ -2,23 +2,40 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <!--    <link rel="stylesheet" href="style.css">-->
+    <style>
+        .center-block {
+            margin: 10px;
+            display: block;
+            font-family: Arial;
+        }
+    </style>
+
+
     <title>HTML FORM to CREATE new Person</title>
 </head>
 <body>
 
 <form th:method="POST" th:action="@{/persons}" th:object="${personNew}">
 
-    <label for="name">Enter NAME : </label>
-    <input type="text" th:field="*{name}" id="name">
-    <br>
-    <label for="age">Enter AGE : </label>
-    <input type="text" th:field="*{age}" id="age">
-    <br>
-    <label for="email">Enter EMAIL :</label>
-    <input type="email" th:field="*{email}" id="email">
-    <br>
-    <label for="submit">create!</label>
-    <input type="submit" id="submit">
+    <div class='center-block'>
+        <label for="name">Enter NAME : </label>
+        <input type="text" style="background-color: aquamarine " th:field="*{name}" id="name">
+    </div>
+    <div class='center-block'>
+        <label for="age">Enter the AGE : </label>
+        <input type="number" style="background-color: aquamarine " th:field="*{age}" id="age">
+    </div>
+    <div class='center-block'>
+        <label align="right" for="email">Enter EMAIL :</label>
+        <input type="email" style="background-color: aquamarine " th:field="*{email}" id="email">
+    </div>
+    <div class='center-block'>
+        <label for="submit">ADD new </label>
+        <input type="submit" value="OK" id="submit">
+    </div>
 
 </form>
 </body>
