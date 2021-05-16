@@ -20,10 +20,11 @@ public class MyController {
     @GetMapping("/my")
     public String anyMethod(Model model) {
 
-        Person p1 = new Person(23, "Bobby");
+        Person p1 = new Person(23, "Example Name",25,"example@dsfsd.com");
+
         model.addAttribute("obj", 2363246);
-        model.addAttribute("p1", p1);
-        model.addAttribute("personList",personDAO.personList());
+        model.addAttribute("person2", personDAO.getPersonById(2));
+        model.addAttribute("personList",personDAO.getAllpersonsList());
         model.addAttribute("string","anyString.....");
         return "myhtml";
     }

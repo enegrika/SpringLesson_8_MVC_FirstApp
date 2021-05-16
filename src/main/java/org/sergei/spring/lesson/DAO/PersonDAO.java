@@ -14,14 +14,14 @@ public class PersonDAO {
 
       {
         personList = new ArrayList<>();
-        personList.add(new Person(++PERSON_COUNT, "Сергей"));
-        personList.add(new Person(++PERSON_COUNT, "Sergei"));
-        personList.add(new Person(++PERSON_COUNT, "Ivan"));
-        personList.add(new Person(++PERSON_COUNT, "Vladimir"));
-        personList.add(new Person(++PERSON_COUNT, "Denis"));
+        personList.add(new Person(++PERSON_COUNT, "Сергей",25,"ser@dsfsd.com"));
+        personList.add(new Person(++PERSON_COUNT, "Sergei",56,"gri@dsfsd.com"));
+        personList.add(new Person(++PERSON_COUNT, "Ivan",76,"ivan@dsfsd.com"));
+        personList.add(new Person(++PERSON_COUNT, "Bobby",23,"bob@dsfsd.com"));
+        personList.add(new Person(++PERSON_COUNT, "Denis",43,"denis@dsfsd.com"));
     }
 
-    public List<Person> personList(){
+    public List<Person> getAllpersonsList(){
         return personList;
     }
 
