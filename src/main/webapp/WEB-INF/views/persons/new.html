@@ -23,19 +23,26 @@
 
     <div class='center-block'>
         <label for="name">Enter NAME : </label>
-        <input type="text" style="background-color: aquamarine " th:field="*{name}" id="name">
+        <input type="text" th:field="*{name}" id="name">
+        <div style="color: crimson" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">error validation</div>
     </div>
+
     <div class='center-block'>
         <label for="age">Enter the AGE : </label>
-        <input type="number" style="background-color: aquamarine " th:field="*{age}" id="age">
+        <input type="number" th:field="*{age}" id="age">
+        <div style="color: crimson" th:if="${#fields.hasErrors('name')}" th:errors="*{age}">error validation</div>
+
     </div>
+
     <div class='center-block'>
         <label align="right" for="email">Enter EMAIL :</label>
-        <input type="email" style="background-color: aquamarine " th:field="*{email}" id="email">
+        <input type="email" th:field="*{email}" id="email">
+        <div style="color: crimson" th:if="${#fields.hasErrors('name')}" th:errors="*{email}">error validation</div>
     </div>
+
     <div class='center-block'>
         <label for="submit">ADD new </label>
-        <input type="submit" value="OK" id="submit" >
+        <input type="submit" value="OK" id="submit">
     </div>
 
 </form>

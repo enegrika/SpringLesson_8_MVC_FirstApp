@@ -1,10 +1,12 @@
 package org.sergei.spring.lesson.controller;
 
+import jakarta.validation.Valid;
 import org.sergei.spring.lesson.DAO.PersonDAO;
 import org.sergei.spring.lesson.models.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -43,10 +45,12 @@ public class PersonController {
     }
 
     @PostMapping()
-    public String create(@ModelAttribute("personNew") Person person) {
-
+    public String create(@ModelAttribute("personNew") @Valid Person person,
+                         BindingResult bindingResult) {
+        if(bindingResult.hasErrors()){
+            return "/persons/new";
+        }
         personDAO.save(person);
-
         return "redirect:/persons";
     }
 
@@ -57,11 +61,14 @@ public class PersonController {
     }
 
     @PatchMapping("/{id}")
-    public String edit(@ModelAttribute("person") Person person,
+    public String edit(@ModelAttribute("person") @Valid Person person,
+                       BindingResult bindingResult,
                        @PathVariable("id") int id,
                        Model model) {
+        if(bindingResult.hasErrors()){
+            return "persons/edit";
+        }
         personDAO.edit(id, person);
-
         return "redirect:/persons/{id}";
     }
 

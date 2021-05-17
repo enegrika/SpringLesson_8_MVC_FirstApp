@@ -21,12 +21,18 @@
 
     <label for="name">Edit name: </label>
     <input type="text" th:field="*{name}" id="name">
+    <div style="color: crimson" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">error validation</div>
+
     <br/>
     <label for="age">Edit age: </label>
     <input type="number" th:field="*{age}" id="age">
+    <div style="color: crimson" th:if="${#fields.hasErrors('age')}" th:errors="*{age}">error validation</div>
+
     <br/>
     <label for="email">Edit email: </label>
     <input type="email" th:field="*{email}" id="email">
+    <div style="color: crimson" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">error validation</div>
+
     <br/>
 
 
