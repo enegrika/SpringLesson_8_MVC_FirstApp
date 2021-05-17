@@ -43,7 +43,7 @@ public class PersonController {
     }
 
     @PostMapping()
-    public String create(@ModelAttribute ("personNew") Person person){
+    public String create(@ModelAttribute("personNew") Person person) {
 
         personDAO.save(person);
 
@@ -51,9 +51,19 @@ public class PersonController {
     }
 
     @GetMapping("/{id}/edit")
-    public String update(@PathVariable("id") int id, Model model){
-        model.addAttribute("person",personDAO.getPersonById(id));
+    public String update(@PathVariable("id") int id, Model model) {
+        model.addAttribute("personEdit", personDAO.getPersonById(id));
         return "persons/editPerson";
+    }
+
+    @PatchMapping("/{id}")
+    public String edit(@ModelAttribute("person") Person person,
+                       @PathVariable("id") int id,
+                       Model model) {
+        personDAO.edit(id, person);
+
+//        return "persons/success";
+        return "redirect:/persons";
     }
 
 

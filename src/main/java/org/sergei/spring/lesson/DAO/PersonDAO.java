@@ -37,4 +37,12 @@ public class PersonDAO {
           person.setId(++PERSON_COUNT);
           personList.add(person);
     }
+
+    public void edit(int id, Person updatedPerson){
+          Person personForUpdate = getPersonById(id);
+
+          personForUpdate.setAge(updatedPerson.getAge());
+          personForUpdate.setName(updatedPerson.getName());
+          personForUpdate.setEmail(updatedPerson.getEmail());
+    }
 }

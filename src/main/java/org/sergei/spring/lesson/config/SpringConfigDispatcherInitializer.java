@@ -1,6 +1,10 @@
 package org.sergei.spring.lesson.config;
 
+import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 
 ///этот класс:  AbstractAnnotationConfigDispatcherServletInitialize (начиная со СПРИНГ 3.2)
 // ЗАМЕНА WEB.XML
@@ -46,4 +50,23 @@ public class SpringConfigDispatcherInitializer
     protected String[] getServletMappings() {
         return new String[]{"/"};
     }
+
+
+    // down is the FILTER CODE - to read HIDDEN Fields from HTML form,
+    // to change "POST" request into "PATCH DELETE and PUT" HTTP requests !!!!
+
+    @Override
+    public void onStartup(ServletContext servletContext) throws ServletException {
+        super.onStartup(servletContext);
+        registerHiddenFieldFilter(servletContext);
+    }
+
+    private void registerHiddenFieldFilter(ServletContext servletContext) {
+        servletContext.addFilter("hiddenHttpMethodFilter",
+                new HiddenHttpMethodFilter())
+                .addMappingForUrlPatterns(null,
+                        true, "/*");
+    }
+
+
 }
