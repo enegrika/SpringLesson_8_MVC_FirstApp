@@ -5,13 +5,28 @@
     <title>Person by ID</title>
 </head>
 <body>
-<p th:text="${person.getName()}">name VALUE</p>
-<p th:text="${person.getId()}">id VALUE</p>
-<p th:text="${person.getEmail()}">email VALUE</p>
-<p th:text="${person.getAge()}">age VALUE</p>
+<p th:text="name + ' : ' + ${person.getName()}">name VALUE</p>
+<p th:text="id + ' : ' + ${person.getId()}">id VALUE</p>
+<p th:text="email + ' : ' + ${person.getEmail()}">email VALUE</p>
+<p th:text="age + ' : ' + ${person.getAge()}">age VALUE</p>
 
-<a href="/persons"> BACK to the List of Persons</a>
-<br>
-<a href="/my">open bootstrap</a>
+<hr/>
+<!--<a href="/persons"> BACK to the List of Persons</a>-->
+<form th:action="@{/persons}">
+    <input type="submit" value="BACK to the List of Persons">
+</form>
+
+
+<br/>
+
+<form th:action="@{/persons/{id}/edit(id=${person.getId()})}">
+    <input type="submit" value="EDIT Person">
+</form>
+<br/>
+<!--WE CAN NOT SEND DELETE REQUEST with"A" tag - WE SHOULD USE FORM TAG !!!-->
+<form th:method="DELETE" th:action="@{/persons/{id}(id=${person.getId()})}">
+    <input type="submit" value="DELETE">
+</form>
+
 </body>
 </html>

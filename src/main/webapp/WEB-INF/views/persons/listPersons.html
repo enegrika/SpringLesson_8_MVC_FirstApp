@@ -5,8 +5,10 @@
     <title>List of ALL Persons</title>
 </head>
 <body>
-
-loop for:each person thymeleaf html code
+"PERSONS LIST"
+<hr/>
+<br/>
+<!--loop for:each person thymeleaf html code-->
 <div th:each="obj : ${personsList}">
     <a
             th:href="@{/persons/{id} (id=${obj.getId()})  }"
@@ -15,8 +17,10 @@ loop for:each person thymeleaf html code
         user</a>
 </div>
 
-<br>
-
-<a href="/persons/new">CREATE NEW PERSON</a>
+<br/>
+<hr/>
+<!--<a href="/persons/new">CREATE NEW PERSON</a>-->
+<form th:action="@{/persons/new}">
+    <input type="submit" value="CREATE NEW"></form>
 </body>
 </html>

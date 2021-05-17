@@ -9,13 +9,13 @@
 <!--thymeleaf method PATCH creates hidden _method "POST" which let us interact in HTML-->
 <form th:method="PATCH" th:action="@{/persons/{id}(id=${personEdit.getId()})}" th:object="${personEdit}">
 
-    <label for="name">Enter name: </label>
+    <label for="name">Edit name: </label>
     <input type="text" th:field="*{name}" id="name">
     <br/>
-    <label for="age">Enter name: </label>
+    <label for="age">Edit age: </label>
     <input type="number" th:field="*{age}" id="age">
     <br/>
-    <label for="email">Enter name: </label>
+    <label for="email">Edit email: </label>
     <input type="email" th:field="*{email}" id="email">
     <br/>
 
