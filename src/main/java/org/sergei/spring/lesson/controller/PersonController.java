@@ -1,12 +1,11 @@
 package org.sergei.spring.lesson.controller;
 
 import org.sergei.spring.lesson.DAO.PersonDAO;
+import org.sergei.spring.lesson.models.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/persons")
@@ -23,17 +22,38 @@ public class PersonController {
     public String showAllpersonsList(Model model) {
         // get all persons from DAO and send it to Views
 
-        model.addAttribute("persons", personDAO.personList());
-        return "persons/list";
+        model.addAttribute("personsList", personDAO.getAllpersonsList());
+        return "persons/listPersons";
     }
 
     @GetMapping("/{id}") //in GET request в запросе от браузера если будем передавать id,
     // то с помощью аннотации PathVariable мы можем передать это число в наш метод шоуперсон по айди здесь же внедряем сущность модель для
-    public String showPersonById(@PathVariable("id") int id, Model model) {
+    public String showPerson(@PathVariable("id") int id, Model model) {
         // get ONE person by ID from DAO and send it to Views
 
         model.addAttribute("person", personDAO.getPersonById(id));
-        return "persons/show";
+        return "persons/showPerson";
+    }
+
+    @GetMapping("/new")
+    public String newPerson(@ModelAttribute("personNew") Person person) {
+//        эту строчку можно заменить аннотацией @ModelAttribute - которая кладет в Модель передаваемый объект Персона
+//       public String newPerson(Model model) - model.addAttribute("personNew", new Person());
+        return "/persons/new";
+    }
+
+    @PostMapping()
+    public String create(@ModelAttribute ("personNew") Person person){
+
+        personDAO.save(person);
+
+        return "redirect:/persons";
+    }
+
+    @GetMapping("/{id}/edit")
+    public String update(@PathVariable("id") int id, Model model){
+        model.addAttribute("person",personDAO.getPersonById(id));
+        return "persons/editPerson";
     }
 
 

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Person by ID</title>
+</head>
+<body>
+<p th:text="${person.getName()}">name VALUE</p>
+<p th:text="${person.getId()}">id VALUE</p>
+<p th:text="${person.getEmail()}">email VALUE</p>
+<p th:text="${person.getAge()}">age VALUE</p>
+
+<a href="/persons"> BACK to the List of Persons</a>
+<br>
+<a href="/my">open bootstrap</a>
+</body>
+</html>

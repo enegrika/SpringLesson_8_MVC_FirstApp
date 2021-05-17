@@ -1,6 +1,8 @@
 package org.sergei.spring.lesson.controller;
 
 import org.sergei.spring.lesson.models.Person;
+import org.sergei.spring.lesson.DAO.PersonDAO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,8 +13,27 @@ public class MyController {
     @GetMapping("/my")
     public String inde(Model model) {
 
-        Person p = new Person(25, "Robert");
-        model.addAttribute("p", p);
+//        Person p = new Person(25, "Robert");
+//        model.addAttribute("p", p);
         return "myHtmlFile";
     }
+    private final PersonDAO personDAO;
+
+    @Autowired
+    public MyController(PersonDAO personDAO) {
+        this.personDAO = personDAO;
+    }
+
+    @GetMapping("/my")
+    public String anyMethod(Model model) {
+
+        Person p1 = new Person(23, "Example Name",25,"example@dsfsd.com");
+
+        model.addAttribute("obj", 2363246);
+        model.addAttribute("person2", personDAO.getPersonById(2));
+        model.addAttribute("personList",personDAO.getAllpersonsList());
+        model.addAttribute("string","anyString.....");
+        return "myhtml";
+    }
+
 }
