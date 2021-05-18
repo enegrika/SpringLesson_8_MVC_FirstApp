@@ -5,13 +5,13 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
           integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <!--    <link rel="stylesheet" href="style.css">-->
-    <style>
-        .center-block {
-            margin: 10px;
-            display: block;
-            font-family: Arial;
-        }
-    </style>
+<!--    <style>-->
+<!--        .center-block {-->
+<!--            margin: 10px;-->
+<!--            display: block;-->
+<!--            font-family: Arial;-->
+<!--        }-->
+<!--    </style>-->
     <title>List of ALL Persons</title>
 </head>
 <body>
@@ -19,18 +19,19 @@
 <hr/>
 <br/>
 <!--loop for:each person thymeleaf html code-->
-<div th:each="obj : ${personsList}">
+<div th:each="pers : ${personsList}">
     <a
-            th:href="@{/persons/{id} (id=${obj.getId()})  }"
+            th:href="@{/persons/{id} (id=${pers.getId()})  }"
 
-            th:text="${obj.getName()}">
+            th:text="${pers.getName() + ', ' + pers.getAge()}">
         user</a>
 </div>
 
 <br/>
 <hr/>
-<!--<a href="/persons/new">CREATE NEW PERSON</a>-->
-<form th:action="@{/persons/new}">
+
+<!--BUTTON to create NEW PERSON -->
+<form th:action="@{/persons/newPerson}">
     <input type="submit" value="CREATE NEW"></form>
 </body>
 </html>

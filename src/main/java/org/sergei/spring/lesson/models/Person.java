@@ -1,9 +1,6 @@
 package org.sergei.spring.lesson.models;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 public class Person {
     private int id;
@@ -13,6 +10,7 @@ public class Person {
     @Size(min = 2,max = 30,message = "Name should be between 2 and 30 cheracters")
     private String name;
 
+    @NotNull(message = "age shouldn't be empty")
     @Min(value = 0, message = "Age should be greater than zero")
     private int age;
 

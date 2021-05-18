@@ -2,40 +2,39 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-    <!--    <link rel="stylesheet" href="style.css">-->
-    <style>
-        .center-block {
-            margin: 10px;
-            display: block;
-            font-family: Arial;
-        }
-    </style>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+              integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <!--    <style>-->
+    <!--        .center-block {-->
+    <!--            margin: 10px;-->
+    <!--            display: block;-->
+    <!--            font-family: Arial;-->
+    <!--        }-->
+    <!--    </style>-->
     <title>UPDATE Person</title>
 </head>
 <body>
 
 <!--thymeleaf method PATCH creates hidden _method "POST" which let us interact in HTML-->
-<form th:method="PATCH" th:action="@{/persons/{id}(id=${personEdit.getId()})}" th:object="${personEdit}">
+<form th:method="PATCH" th:action="@{/persons/{id}(id=${person.getId()})}" th:object="${person}">
 
     <label for="name">Edit name: </label>
     <input type="text" th:field="*{name}" id="name">
-    <div style="color: crimson" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">error validation</div>
+    <div style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">error validation</div>
 
     <br/>
     <label for="age">Edit age: </label>
-    <input type="number" th:field="*{age}" id="age">
-    <div style="color: crimson" th:if="${#fields.hasErrors('age')}" th:errors="*{age}">error validation</div>
+    <input type="text" th:field="*{age}" id="age">
+    <div style="color: red" th:if="${#fields.hasErrors('age')}" th:errors="*{age}">error validation</div>
 
     <br/>
     <label for="email">Edit email: </label>
-    <input type="email" th:field="*{email}" id="email">
-    <div style="color: crimson" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">error validation</div>
+    <input type="text" th:field="*{email}" id="email">
+    <div style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">error validation</div>
 
     <br/>
 
-
+<!--BUTTON to submit update and got to the updated person page with same id-->
     <input type="submit" value="UPDATE !">
 
 </form>

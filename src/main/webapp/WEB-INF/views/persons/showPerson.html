@@ -2,38 +2,38 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+
+<!--    BOOSTRAP css link-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
           integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-    <!--    <link rel="stylesheet" href="style.css">-->
-    <style>
-        .center-block {
-            margin: 10px;
-            display: block;
-            font-family: Arial;
-        }
-    </style>
+
     <title>Person by ID</title>
 </head>
+
+<!--SHOW PERSON Fields-->
 <body>
-<p th:text="name + ' : ' + ${person.getName()}">name VALUE</p>
-<p th:text="id + ' : ' + ${person.getId()}">id VALUE</p>
-<p th:text="email + ' : ' + ${person.getEmail()}">email VALUE</p>
-<p th:text="age + ' : ' + ${person.getAge()}">age VALUE</p>
+<p th:text=" name + ' : ' + ${person.getName()}">GETTING name VALUE from THYMELEAF</p>
+<p th:text=" id + ' : ' + ${person.getId()}">id VALUE</p>
+<p th:text=" email + ' : ' + ${person.getEmail()}">email VALUE</p>
+<p th:text=" age + ' : ' + ${person.getAge()}">age VALUE</p>
 
 <hr/>
-<!--<a href="/persons"> BACK to the List of Persons</a>-->
+
+<!--BUTTON - BACK to the List-->
 <form th:action="@{/persons}">
     <input type="submit" value="BACK to the List of Persons">
 </form>
-
-
 <br/>
 
-<form th:action="@{/persons/{id}/edit(id=${person.getId()})}">
+
+<!--BUTTON - EDIT person-->
+<form th:action="@{/persons/{id}/editPerson(id=${person.getId()})}">
     <input type="submit" value="EDIT Person">
 </form>
 <br/>
-<!--WE CAN NOT SEND DELETE REQUEST with"A" tag - WE SHOULD USE FORM TAG !!!-->
+
+
+<!--BUTTON DELETE person  ps: WE CAN NOT SEND DELETE REQUEST with"A" tag - should use FORM tag !!!-->
 <form th:method="DELETE" th:action="@{/persons/{id}(id=${person.getId()})}">
     <input type="submit" value="DELETE">
 </form>
