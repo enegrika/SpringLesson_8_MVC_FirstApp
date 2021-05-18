@@ -47,7 +47,6 @@ public class PersonDAO {
     }
 
     public void delete(int id){
-          Person personToDelete = getPersonById(id);
           personList.removeIf(person -> person.getId() == id);
     }
 }
