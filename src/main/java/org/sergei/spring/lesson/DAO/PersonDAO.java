@@ -59,11 +59,15 @@ public class PersonDAO {
     // METHODS to work with DATABASE
     public List<Person> getAllpersonsList() {
         // We should use PersonMapper if our Person fields names are DIFFER from Database FIELDS NAMES
-        return jdbcTemplate.query("SELECT * From Person", new BeanPropertyRowMapper<>(Person.class));
+        return jdbcTemplate.query("SELECT * From Person", new PersonMapper());
     }
 
+    // BUT if our Person fields names are NOT DIFFER from Database FIELDS NAMES -
+    // we should use
+
     public Person getPersonById(int id) {
-        return jdbcTemplate.query("SELECT * FROM Person WHERE id=?", new Object[]{id}, new PersonMapper())
+        return jdbcTemplate.query("SELECT * FROM Person WHERE id=?",
+                new Object[]{id}, new BeanPropertyRowMapper<>(Person.class))
                 .stream().findAny().orElse(null);
     }
 
