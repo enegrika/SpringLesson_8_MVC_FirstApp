@@ -10,59 +10,47 @@ import java.util.List;
 @Component
 public class PersonDAO {
 
-//    public static void main(String[] args) {
-//        PersonDAO personDAO = new PersonDAO();
-//        List<Person> l = personDAO.getAllpersonsList();
-//        for (Person p : l) {
-//            System.out.println(l.toString());
-//        }
-//
-//        System.out.println(personDAO.getPersonById(1));
-//    }
 //    private static int PERSON_COUNT;
 //    private List<Person> personList;
 //
 //    {
-
-//    private static int PERSON_COUNT;
-//    private List<Person> personList;
-//      {
-
 //        personList = new ArrayList<>();
-//        personList.add(new Person(++PERSON_COUNT, "Сергей",25,"ser@dsfsd.com"));
-//        personList.add(new Person(++PERSON_COUNT, "Sergei",56,"gri@dsfsd.com"));
-//        personList.add(new Person(++PERSON_COUNT, "Ivan",76,"ivan@dsfsd.com"));
-//        personList.add(new Person(++PERSON_COUNT, "Bobby",23,"bob@dsfsd.com"));
-//        personList.add(new Person(++PERSON_COUNT, "Denis",43,"denis@dsfsd.com"));
+//        personList.add(new Person(++PERSON_COUNT, "Сергей", 25, "ser@dsfsd.com"));
+//        personList.add(new Person(++PERSON_COUNT, "Sergei", 56, "gri@dsfsd.com"));
+//        personList.add(new Person(++PERSON_COUNT, "Ivan", 76, "ivan@dsfsd.com"));
+//        personList.add(new Person(++PERSON_COUNT, "Bobby", 23, "bob@dsfsd.com"));
+//        personList.add(new Person(++PERSON_COUNT, "Denis", 43, "denis@dsfsd.com"));
 //    }
 
 
-//    private static final String URL = "jdbc:postgresql://localhost:5432/SpringMVC_DB";
+//    private static final String URL = "jdbc:postgresql://localhost:5433/SpringMVC_DB";
+//    private static final String USERNAME = "postgres";
+//    private static final String PASSWORD = "bangkok7";
+//    private static final String databaseDriver = "org.postgresql.Driver";
 
-    private static final String URL = "jdbc:postgresql://localhost:5433/SpringMVC_DB";
-    private static final String USERNAME = "postgres";
-    private static final String PASSWORD = "bangkok7";
+    private static final String URL = "jdbc:mysql://localhost:3306/springmvc_db";
+    private static final String USERNAME = "root";
+    private static final String PASSWORD = "UserAccount@1975";
+    private static final String databaseDriver = "com.mysql.cj.jdbc.Driver";
 
     private static Connection connection;
 
     static {
         try {
-            Class.forName("org.postgresql.Driver");
-            System.out.println("success");
+            Class.forName(databaseDriver);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
 
         try {
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-            System.out.println("success");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
     }
 
     public List<Person> getAllpersonsList() {
-        List<Person> personList = new ArrayList<>();
+        List<Person> personsList = new ArrayList<>();
 
         // HERE WE CAN USE normal STATEMENT object because SQL query here is STATIC - can not change dynamically
         try {
@@ -77,13 +65,13 @@ public class PersonDAO {
                 person.setAge(resultSet.getInt("age"));
                 person.setEmail(resultSet.getString("email"));
 
-                personList.add(person);
+                personsList.add(person);
             }
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return personList;
+        return personsList;
     }
 
 
