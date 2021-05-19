@@ -59,7 +59,7 @@ public class PersonDAO {
     // METHODS to work with DATABASE
     public List<Person> getAllpersonsList() {
         // We should use PersonMapper if our Person fields names are DIFFER from Database FIELDS NAMES
-        return jdbcTemplate.query("SELECT * From Person;", new PersonMapper());
+        return jdbcTemplate.query("SELECT * From Person", new BeanPropertyRowMapper<>(Person.class));
     }
 
     public Person getPersonById(int id) {
@@ -80,7 +80,6 @@ public class PersonDAO {
     }
 
     public void delete(int id) {
-        jdbcTemplate.update("DELETE FROM Person WHERE id=?",
-                new Object[]{id}, new PersonMapper());
+        jdbcTemplate.update("DELETE FROM Person WHERE id=?", id) ;
     }
 }

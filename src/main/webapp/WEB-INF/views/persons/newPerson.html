@@ -23,7 +23,7 @@
     <br/>
 
     <label for="age">Enter the AGE : </label>
-    <input type="text" th:field="*{age}" id="age">
+    <input type="number" th:field="*{age}" id="age">
     <br/>
     <div style="color: red" th:if="${#fields.hasErrors('age')}" th:errors="*{age}">error validation</div>
 
