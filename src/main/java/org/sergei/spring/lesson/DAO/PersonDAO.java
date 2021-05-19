@@ -9,31 +9,19 @@ import java.util.List;
 
 @Component
 public class PersonDAO {
-    private static int PERSON_COUNT;
-
-    private static final String URL = "jdbc:postgresql://localhost:5432/SpringMVC_DB";
-    private static final String USERNAME = "postgres";
-    private static final String PASSWORD = "bangkok7";
-
-    private static Connection connection;
-
-    static {
-        try {
-            Class.forName("org.postgresql.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-    }
-
-
+//    public static void main(String[] args) {
+//        PersonDAO personDAO = new PersonDAO();
+//        List<Person> l = personDAO.getAllpersonsList();
+//        for (Person p : l) {
+//            System.out.println(l.toString());
+//        }
+//
+//        System.out.println(personDAO.getPersonById(1));
+//    }
+//    private static int PERSON_COUNT;
 //    private List<Person> personList;
-//      {
+//
+//    {
 //        personList = new ArrayList<>();
 //        personList.add(new Person(++PERSON_COUNT, "Сергей",25,"ser@dsfsd.com"));
 //        personList.add(new Person(++PERSON_COUNT, "Sergei",56,"gri@dsfsd.com"));
@@ -42,11 +30,39 @@ public class PersonDAO {
 //        personList.add(new Person(++PERSON_COUNT, "Denis",43,"denis@dsfsd.com"));
 //    }
 
+
+//    private static final String URL = "jdbc:postgresql://localhost:5432/SpringMVC_DB";
+    private static final String URL = "jdbc:postgresql://localhost:5433/SpringMVC_DB";
+    private static final String USERNAME = "postgres";
+    private static final String PASSWORD = "bangkok7";
+
+    private static Connection connection;
+
+    static {
+        try {
+            Class.forName("org.postgresql.Driver");
+            System.out.println("success");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+            System.out.println("success");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+
+
+
+
     public List<Person> getAllpersonsList() {
         List<Person> personList = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
-            String SQL = "SELECT * FROM Person";
+            String SQL = "SELECT * FROM person";
             ResultSet resultSet = statement.executeQuery(SQL);
 
             while (resultSet.next()) {
@@ -75,6 +91,7 @@ public class PersonDAO {
 
             // POLUCHAEM posle vypolneniya SQL zaprosa - RESULTSET object
             // berem iz nego znacheniya kolonok  i prisvaivaem vremennomu obiektu person
+
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
 

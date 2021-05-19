@@ -67,6 +67,4 @@ public class SpringConfigDispatcherInitializer
                 .addMappingForUrlPatterns(null,
                         true, "/*");
     }
-
-
 }
