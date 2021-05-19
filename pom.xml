@@ -48,6 +48,14 @@
             <version>${spring.version}</version>
         </dependency>
 
+<!--        SPRING JDBC gives us JDBCtemplate Class-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+
         <!-- https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf-spring5 -->
         <dependency>
             <groupId>org.thymeleaf</groupId>
