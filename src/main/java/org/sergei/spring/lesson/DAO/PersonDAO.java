@@ -20,7 +20,7 @@ public class PersonDAO {
 //        personList.add(new Person(++PERSON_COUNT, "Denis",43,"denis@dsfsd.com"));
 //    }
 
-    private static final String URL = "jdbc:postgresql://localhost:5432/SpringMVC_DB";
+    private static final String URL = "jdbc:postgresql://localhost:5433/SpringMVC_DB";
     private static final String USERNAME = "postgres";
     private static final String PASSWORD = "bangkok7";
 
