@@ -23,15 +23,15 @@ public class PersonDAO {
 //    }
 
 
-//    private static final String URL = "jdbc:postgresql://localhost:5433/SpringMVC_DB";
-//    private static final String USERNAME = "postgres";
-//    private static final String PASSWORD = "bangkok7";
-//    private static final String databaseDriver = "org.postgresql.Driver";
+    private static final String URL = "jdbc:postgresql://localhost:5433/SpringMVC_DB";
+    private static final String USERNAME = "postgres";
+    private static final String PASSWORD = "postgres";
+    private static final String databaseDriver = "org.postgresql.Driver";
 
-    private static final String URL = "jdbc:mysql://localhost:3306/springmvc_db";
-    private static final String USERNAME = "root";
-    private static final String PASSWORD = "UserAccount@1975";
-    private static final String databaseDriver = "com.mysql.cj.jdbc.Driver";
+//    private static final String URL = "jdbc:mysql://localhost:3306/springmvc_db";
+//    private static final String USERNAME = "root";
+//    private static final String PASSWORD = "UserAccount@1975";
+//    private static final String databaseDriver = "com.mysql.cj.jdbc.Driver";
 
     private static Connection connection;
 
