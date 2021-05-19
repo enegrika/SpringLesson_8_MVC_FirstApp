@@ -9,6 +9,7 @@ import java.util.List;
 
 @Component
 public class PersonDAO {
+
 //    public static void main(String[] args) {
 //        PersonDAO personDAO = new PersonDAO();
 //        List<Person> l = personDAO.getAllpersonsList();
@@ -22,6 +23,11 @@ public class PersonDAO {
 //    private List<Person> personList;
 //
 //    {
+
+//    private static int PERSON_COUNT;
+//    private List<Person> personList;
+//      {
+
 //        personList = new ArrayList<>();
 //        personList.add(new Person(++PERSON_COUNT, "Сергей",25,"ser@dsfsd.com"));
 //        personList.add(new Person(++PERSON_COUNT, "Sergei",56,"gri@dsfsd.com"));
@@ -32,6 +38,7 @@ public class PersonDAO {
 
 
 //    private static final String URL = "jdbc:postgresql://localhost:5432/SpringMVC_DB";
+
     private static final String URL = "jdbc:postgresql://localhost:5433/SpringMVC_DB";
     private static final String USERNAME = "postgres";
     private static final String PASSWORD = "bangkok7";
@@ -54,12 +61,10 @@ public class PersonDAO {
         }
     }
 
-
-
-
-
     public List<Person> getAllpersonsList() {
         List<Person> personList = new ArrayList<>();
+
+        // HERE WE CAN USE normal STATEMENT object because SQL query here is STATIC - can not change dynamically
         try {
             Statement statement = connection.createStatement();
             String SQL = "SELECT * FROM person";
@@ -136,14 +141,41 @@ public class PersonDAO {
     }
 
     public void edit(int id, Person updatedPerson) {
-        Person personForUpdate = getPersonById(id);
+//        Person personForUpdate = getPersonById(id);
+//
+//        personForUpdate.setAge(updatedPerson.getAge());
+//        personForUpdate.setName(updatedPerson.getName());
+//        personForUpdate.setEmail(updatedPerson.getEmail());
 
-        personForUpdate.setAge(updatedPerson.getAge());
-        personForUpdate.setName(updatedPerson.getName());
-        personForUpdate.setEmail(updatedPerson.getEmail());
+
+        try {
+            PreparedStatement preparedStatement =
+                    connection.prepareStatement("UPDATE Person SET name=?, age=?, email=? WHERE id=?");
+
+            preparedStatement.setString(1, updatedPerson.getName());
+            preparedStatement.setInt(2, updatedPerson.getAge());
+            preparedStatement.setString(3, updatedPerson.getEmail());
+            preparedStatement.setInt(4, id);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
     }
 
     public void delete(int id) {
 //        personList.removeIf(person -> person.getId() == id);
+        try {
+            PreparedStatement preparedStatement =
+                    connection.prepareStatement("DELETE FROM Person WHERE id=?");
+            preparedStatement.setInt(1, id);
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
