@@ -1,10 +1,14 @@
 package org.sergei.spring.lesson.config;
 
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+import javax.servlet.DispatcherType;
+import javax.servlet.FilterRegistration;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import java.util.EnumSet;
 
 ///этот класс:  AbstractAnnotationConfigDispatcherServletInitialize (начиная со СПРИНГ 3.2)
 // ЗАМЕНА WEB.XML
@@ -58,6 +62,7 @@ public class SpringConfigDispatcherInitializer
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
         super.onStartup(servletContext);
+        registerCharacterEncodingFilter(servletContext);
         registerHiddenFieldFilter(servletContext);
     }
 
@@ -68,5 +73,18 @@ public class SpringConfigDispatcherInitializer
                         true, "/*");
     }
 
+    //    РУССКАЯ КОДИРОВКА для СЕРВЛЕТа в СПРИНГЕ
+//  ENCODING FILTER for UTF-8 (russian etc.)
+
+    private void registerCharacterEncodingFilter(ServletContext servletContext) {
+        EnumSet<DispatcherType> dispatcherTypes = EnumSet.of(DispatcherType.REQUEST, DispatcherType.FORWARD);
+
+        CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
+        characterEncodingFilter.setEncoding("UTF-8");
+        characterEncodingFilter.setForceEncoding(true);
+
+        FilterRegistration.Dynamic characterEncoding = servletContext.addFilter("characterEncoding", characterEncodingFilter);
+        characterEncoding.addMappingForUrlPatterns(dispatcherTypes, true, "/*");
+    }
 
 }
